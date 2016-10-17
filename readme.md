@@ -1,4 +1,4 @@
-# SCRAM
+# SCRAM [![Build Status](https://travis-ci.org/nytopop/scram.svg?branch=master)](https://travis-ci.org/nytopop/scram)
 
 Scram is a scheme dialect, inspired in large part by [lispy](http://norvig.com/lispy.html).
 
