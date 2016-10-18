@@ -3,10 +3,7 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"log"
-	"os"
 	"strings"
 
 	"github.com/shavac/readline"
@@ -36,28 +33,25 @@ func REPL(prompt string) {
 		case *result != "":
 			readline.AddHistory(*result)
 
-			parsed := read(*result)
-			res := Eval(parsed, &globalenv)
-			out := String(res)
+			tokens := Tokenize(*result)
+			exp := TokenTree(&tokens)
+			val := Eval(exp, &globalenv)
+			out := String(val)
 
 			fmt.Println(out)
 		}
 	}
 }
 
-func ExecuteFiles(files []string) {
+func ExecFiles(files []string) {
 	for _, f := range files {
-		file, err := os.Open(f)
-		if err != nil {
-			log.Fatalln(err)
-		}
-		defer file.Close()
-
-		scanner := bufio.NewScanner(file)
-		for scanner.Scan() {
-			parsed := read(scanner.Text())
-			res := Eval(parsed, &globalenv)
-			out := String(res)
+		s := ReadFile(f)
+		exps := ReadExps(s)
+		for _, raw := range exps {
+			tokens := Tokenize(raw)
+			exp := TokenTree(&tokens)
+			val := Eval(exp, &globalenv)
+			out := String(val)
 
 			fmt.Println(out)
 		}

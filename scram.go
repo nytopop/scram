@@ -8,7 +8,7 @@ func main() {
 	if len(os.Args) < 2 {
 		REPL("-> ")
 	} else {
-		ExecuteFiles(os.Args[1:])
+		ExecFiles(os.Args[1:])
 		REPL("-> ")
 	}
 }
