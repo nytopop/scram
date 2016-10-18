@@ -18,6 +18,12 @@ type Scram interface{}
 type Symbol string
 type Number float64
 
+// Read expression from string
+func read(s string) Scram {
+	tokens := Tokenize(s)
+	return TokenTree(&tokens)
+}
+
 // Syntactic Analysis
 func TokenTree(tokens *[]string) Scram {
 	token := (*tokens)[0]

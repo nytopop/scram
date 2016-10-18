@@ -24,9 +24,9 @@ func init() {
 			"cdr": func(a ...Scram) Scram {
 				return a[0].([]Scram)[1:]
 			},
-			//"list": Eval(read(
-			//	"(lambda z z)"),
-			//	&globalenv),
+			"list": Eval(read(
+				"(lambda z z)"),
+				&globalenv),
 			// Concurrency
 			"chan": func(a ...Scram) Scram {
 				return make(chan Scram, int(a[0].(Number)))
