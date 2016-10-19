@@ -11,6 +11,10 @@ func Eval(expression Scram, e *Env) (value Scram) {
 	case Symbol:
 		value = e.Find(exp).Vars[exp]
 	case []Scram:
+		if len(exp) == 0 {
+			value = false
+			return
+		}
 		switch car, _ := exp[0].(Symbol); car {
 		case "quote":
 			value = exp[1]

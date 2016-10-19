@@ -1,8 +1,21 @@
 # SCRAM [![Build Status](https://travis-ci.org/nytopop/scram.svg?branch=master)](https://travis-ci.org/nytopop/scram)
 
-Scram is a scheme dialect, inspired in large part by [lispy](http://norvig.com/lispy.html). Most of the original code is refactored and extended from [pkelchte/scm](https://github.com/pkelchte/scm).
+Scram is a scheme dialect, inspired in large part by [lispy](http://norvig.com/lispy.html). Much of the original code is refactored and extended from [pkelchte/scm](https://github.com/pkelchte/scm).
 
 The syntax for scram is a mashup of common lisp and scheme, with some of its own idosyncracies.
+
+## Usage
+
+    git clone https://github.com/nytopop/scram
+    go install
+
+To run a script:
+
+    scram example/primitives.lisp
+
+To drop to a REPL:
+
+    scram
 
 ## Primitives
 
