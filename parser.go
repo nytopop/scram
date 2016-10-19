@@ -3,6 +3,7 @@
 package main
 
 import (
+	"bufio"
 	"bytes"
 	"fmt"
 	"io"
@@ -94,7 +95,19 @@ func ReadFile(f string) string {
 	io.Copy(buf, file)
 
 	s := string(buf.Bytes())
-	clean := strings.Replace(s, "\n", "", -1)
+
+	// strip comments
+	code := ""
+	scanner := bufio.NewScanner(strings.NewReader(s))
+	for scanner.Scan() {
+		if scanner.Text() != "" {
+			if string(scanner.Text()[0]) != ";" {
+				code += scanner.Text()
+			}
+		}
+	}
+
+	clean := strings.Replace(code, "\n", "", -1)
 	clean = strings.Replace(clean, "\r", "", -1)
 	clean = strings.Replace(clean, "\t", "", -1)
 
